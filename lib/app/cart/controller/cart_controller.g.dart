@@ -29,11 +29,45 @@ mixin _$CartController on _CartControllerBase, Store {
       ActionController(name: '_CartControllerBase', context: context);
 
   @override
-  dynamic getCart() {
+  dynamic loadCart() {
     final _$actionInfo = _$_CartControllerBaseActionController.startAction(
-        name: '_CartControllerBase.getCart');
+        name: '_CartControllerBase.loadCart');
     try {
-      return super.getCart();
+      return super.loadCart();
+    } finally {
+      _$_CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic getItensCart() {
+    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
+        name: '_CartControllerBase.getItensCart');
+    try {
+      return super.getItensCart();
+    } finally {
+      _$_CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setQuantity(
+      {required String id, required Map<String, dynamic> body}) {
+    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
+        name: '_CartControllerBase.setQuantity');
+    try {
+      return super.setQuantity(id: id, body: body);
+    } finally {
+      _$_CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic removeItem({required String id}) {
+    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
+        name: '_CartControllerBase.removeItem');
+    try {
+      return super.removeItem(id: id);
     } finally {
       _$_CartControllerBaseActionController.endAction(_$actionInfo);
     }

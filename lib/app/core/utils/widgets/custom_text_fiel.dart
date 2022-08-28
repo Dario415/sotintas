@@ -46,7 +46,7 @@ class _CustomTextFielState extends State<CustomTextFiel> {
       children: [
         widget.label != null
             ? Container(
-                margin: const EdgeInsets.only(bottom: 8,left: 20),
+                margin: const EdgeInsets.only(bottom: 8, left: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -55,54 +55,53 @@ class _CustomTextFielState extends State<CustomTextFiel> {
                 ),
               )
             : Container(),
-        Container(
-          decoration: const BoxDecoration(color: AppColors.purpleWhite,borderRadius: BorderRadius.all(Radius.circular(10))),
-          padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-          child: TextFormField(
-            controller: widget.controller,
-            obscureText: obscurePass,
-            decoration: InputDecoration(
-                border: InputBorder.none,
-                fillColor: Colors.red,
-                hintText: widget.hint,
-                hintStyle: AppFonts.textFildHint,
-                suffixIcon: widget.isPassword
-                    ? obscurePass
-                        ? InkWell(
-                            onTap: () => visibleOrHidden(),
-                            child: const Icon(
-                              Icons.visibility_off,
-                              color: AppColors.lightWhite,
-                            ),
-                          )
-                        : InkWell(
-                            onTap: () => visibleOrHidden(),
-                            child: const Icon(
-                              Icons.visibility,
-                              color: AppColors.lightWhite,
-                            ),
-                          )
-                    : null),
-            validator: (value) {
-              final regExpEmail = RegExp(
-                  r'(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))');
-              if (value!.isEmpty && widget.isEmail) {
-                return 'Insira um email';
-              } else if (widget.isEmail && !regExpEmail.hasMatch(value)) {
-                return 'Insira um email válido';
-              }
-              if (value.isEmpty && widget.isName) {
-                return 'Insira uma cargo / função';
-              } else if (widget.isName && value.length <= 3) {
-                return 'Insira uma cargo / função válido';
-              }
+        TextFormField(
+          controller: widget.controller,
+          obscureText: obscurePass,
+          decoration: InputDecoration(
+              border: const OutlineInputBorder(
+                borderSide: BorderSide.none,
+              ),
+              filled: true,
+              fillColor: AppColors.purpleWhite,
+              hintText: widget.hint,
+              hintStyle: AppFonts.textFildHint,
+              suffixIcon: widget.isPassword
+                  ? obscurePass
+                      ? InkWell(
+                          onTap: () => visibleOrHidden(),
+                          child: const Icon(
+                            Icons.visibility_off,
+                            color: AppColors.lightPurpleWhite,
+                          ),
+                        )
+                      : InkWell(
+                          onTap: () => visibleOrHidden(),
+                          child: const Icon(
+                            Icons.visibility,
+                            color: AppColors.lightPurpleWhite,
+                          ),
+                        )
+                  : null),
+          validator: (value) {
+            final regExpEmail = RegExp(
+                r'(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))');
+            if (value!.isEmpty && widget.isEmail) {
+              return 'Insira um email';
+            } else if (widget.isEmail && !regExpEmail.hasMatch(value)) {
+              return 'Insira um email válido';
+            }
+            if (value.isEmpty && widget.isName) {
+              return 'Insira um nome';
+            } else if (widget.isName && value.length <= 3) {
+              return 'Insira uma nome válido';
+            }
 
-              if (widget.isPassword && value.length < 6) {
-                return 'senha invalida !';
-              }
-              return null;
-            },
-          ),
+            if (widget.isPassword && value.length < 6) {
+              return 'senha invalida !';
+            }
+            return null;
+          },
         ),
       ],
     );

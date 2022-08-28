@@ -61,6 +61,17 @@ mixin _$ShopController on _ShopControllerBase, Store {
       ActionController(name: '_ShopControllerBase', context: context);
 
   @override
+  dynamic loadItens() {
+    final _$actionInfo = _$_ShopControllerBaseActionController.startAction(
+        name: '_ShopControllerBase.loadItens');
+    try {
+      return super.loadItens();
+    } finally {
+      _$_ShopControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic searchPaints(String text) {
     final _$actionInfo = _$_ShopControllerBaseActionController.startAction(
         name: '_ShopControllerBase.searchPaints');
