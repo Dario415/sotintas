@@ -98,9 +98,10 @@ class _CustomTextFielState extends State<CustomTextFiel> {
             } else if (widget.isName && value.length <= 3) {
               return 'Insira uma nome válido';
             }
-
-            if (widget.isPassword && value.length < 6) {
-              return 'senha invalida !';
+            if (value.isEmpty && widget.isPassword) {
+              return 'Insira uma senha';
+            } else if (widget.isPassword && value.length < 6) {
+              return 'Insira uma senha válida';
             }
             return null;
           },

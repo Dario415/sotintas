@@ -73,8 +73,10 @@ class _SplashViewState extends State<SplashView> {
                           context, AppRoutes.home, (route) => false);
                     }
                   });
-                  return const Center(
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.lightGrey80,
+                    ),
                   );
                 }),
           ],

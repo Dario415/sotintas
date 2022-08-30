@@ -38,7 +38,7 @@ abstract class _DetailsControllerBase with Store {
     _repository.getById(id).then((value) {
       ShopModel paint = value;
       _repository.addToCart({
-        'quantity': 2,
+        'quantity': 1,
         'paint': paint,
       });
     });

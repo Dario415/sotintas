@@ -10,8 +10,6 @@ class AppColors {
   static Color white = const Color(0xFFFFFFFF);
   static Color white80 = const Color(0xFFFFFFFF).withOpacity(0.8);
   static Color white40 = const Color(0xFFFFFFFF).withOpacity(0.4);
-  static Color lightPurpleWhite = const Color(0xFFECEAF5);
-  static Color purpleWhite = const Color(0xFFA8A0D0);
   static Color backgrundWhite = const Color.fromARGB(255, 242, 241, 243);
   static Color grey = const Color(0xFF707070);
   static Color grey40 = const Color(0xFF707070).withOpacity(0.4);

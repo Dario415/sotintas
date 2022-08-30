@@ -17,19 +17,21 @@ abstract class _ShopControllerBase with Store {
   bool onlyDeliveryFree = false;
 
   @observable
+  int results = 0;
+
+  @observable
   ObservableList paintList = [].asObservable();
 
-  
   @action
-  loadItens(){
-    if(paintList.isEmpty){
-          getPaints();
+  loadItens() {
+    if (paintList.isEmpty) {
+      getPaints();
     }
   }
 
   @action
   searchPaints(String text) {
-    if(text.isEmpty){
+    if (text.isEmpty) {
       getPaints();
     }
     isLoading = true;
@@ -38,6 +40,7 @@ abstract class _ShopControllerBase with Store {
       _repository.searchByName(text).then((value) {
         paintList.addAll(value);
         isLoading = false;
+        results = value.length;
       });
     });
   }
@@ -46,6 +49,7 @@ abstract class _ShopControllerBase with Store {
   deliveryFreeOrNot(bool? check) {
     onlyDeliveryFree = check!;
     paintList.clear();
+    results = 0;
     _page = 1;
     getPaints();
   }
@@ -56,6 +60,9 @@ abstract class _ShopControllerBase with Store {
       getDeliveryFree();
     } else {
       getAllPaints();
+      _repository.getAll().then((value){
+        results = value.length;
+      });
     }
   }
 
@@ -80,6 +87,7 @@ abstract class _ShopControllerBase with Store {
           paintList.add(element);
         }
       }
+      results = paintList.length;
     });
     isLoading = false;
   }

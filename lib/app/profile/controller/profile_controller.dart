@@ -13,7 +13,7 @@ abstract class _ProfileControllerBase with Store {
   final _localData = GetIt.I.get<LocalData>();
 
   @observable
-  late ProfileModel profile = ProfileModel(email: '', avatar: '', name: '');
+  ProfileModel? profile;
 
   @action
   logout() {

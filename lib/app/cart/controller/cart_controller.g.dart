@@ -25,6 +25,22 @@ mixin _$CartController on _CartControllerBase, Store {
     });
   }
 
+  late final _$isLoadingAtom =
+      Atom(name: '_CartControllerBase.isLoading', context: context);
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   late final _$_CartControllerBaseActionController =
       ActionController(name: '_CartControllerBase', context: context);
 
@@ -75,7 +91,8 @@ mixin _$CartController on _CartControllerBase, Store {
   @override
   String toString() {
     return '''
-cartList: ${cartList}
+cartList: ${cartList},
+isLoading: ${isLoading}
     ''';
   }
 }

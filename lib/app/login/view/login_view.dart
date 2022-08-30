@@ -25,6 +25,8 @@ class _LoginViewState extends State<LoginView> {
         return Form(
           key: _formKey,
           child: Container(
+            width: constraints.maxWidth,
+            height: constraints.maxHeight,
             padding: const EdgeInsets.all(24.0),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -37,108 +39,99 @@ class _LoginViewState extends State<LoginView> {
               ),
             ),
             child: SingleChildScrollView(
-              child: SizedBox(
-                width: constraints.maxWidth,
-                height: constraints.maxHeight,
-                child: Column(
-                  children: [
-                    const Expanded(
-                      flex: 2,
-                      child: SizedBox(),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/icons/bucket_and_paint.png',
-                          height: 58,
-                          width: 58,
-                        ),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        Text(
-                          'SóTintas',
-                          style: TextStyle(
-                              fontSize: 36,
-                              color: AppColors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'OpenSans'),
-                        ),
-                      ],
-                    ),
-                    const Expanded(
-                      flex: 1,
-                      child: SizedBox(),
-                    ),
-                    Text(
-                      'Entrar na plataforma',
-                      style: TextStyle(
-                        fontSize: 22,
-                        color: AppColors.white,
-                        fontWeight: FontWeight.bold,
+              physics: const BouncingScrollPhysics(),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: constraints.maxHeight * .12,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/icons/bucket_and_paint.png',
+                        height: 58,
+                        width: 58,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    const CustomTextFiel(
-                      label: 'E-mail',
-                      hint: 'fernandasilva@onu.com.br',
-                      isEmail: true,
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    const CustomTextFiel(
-                      label: 'Senha',
-                      hint: '********',
-                      isPassword: true,
-                    ),
-                    const SizedBox(
-                      height: 32,
-                    ),
-                    Observer(builder: (context) {
-                      return CustomButton(
-                        title: 'Login',
-                        isLoading: _controller.isLoading,
-                        width: constraints.maxWidth * .65,
-                        backgroundColor: AppColors.white,
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            _controller.authentication();
-                            Navigator.pushNamedAndRemoveUntil(
-                                context, AppRoutes.home, (route) => false);
-                          }
-                        },
-                        textStyle: TextStyle(
-                          color: AppColors.primary,
-                          fontSize: 16,
-                        ),
-                      );
-                    }),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, AppRoutes.registration, (route) => false);
-                      },
-                      child: Text(
-                        'Criar conta',
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Text(
+                        'SóTintas',
                         style: TextStyle(
-                          fontSize: 16,
-                          color: AppColors.white40,
-                        ),
+                            fontSize: 36,
+                            color: AppColors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'OpenSans'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * .1,
+                  ),
+                  Text(
+                    'Entrar na plataforma',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: AppColors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(
+                    height: constraints.maxHeight * .06,
+                  ),
+                  const CustomTextFiel(
+                    label: 'E-mail',
+                    hint: 'fernandasilva@onu.com.br',
+                    isEmail: true,
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  const CustomTextFiel(
+                    label: 'Senha',
+                    hint: '********',
+                    isPassword: true,
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Observer(builder: (context) {
+                    return CustomButton(
+                      title: 'Login',
+                      isLoading: _controller.isLoading,
+                      width: constraints.maxWidth * .65,
+                      backgroundColor: AppColors.white,
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _controller.authentication();
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, AppRoutes.home, (route) => false);
+                        }
+                      },
+                      textStyle: TextStyle(
+                        color: AppColors.primary,
+                        fontSize: 16,
+                      ),
+                    );
+                  }),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, AppRoutes.registration, (route) => false);
+                    },
+                    child: Text(
+                      'Criar conta',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: AppColors.white40,
                       ),
                     ),
-                    const Expanded(
-                      flex: 2,
-                      child: SizedBox(),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

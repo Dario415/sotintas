@@ -12,17 +12,23 @@ abstract class _CartControllerBase with Store {
   @observable
   ObservableList cartList = [].asObservable();
 
+  @observable
+  bool isLoading = false;
+
   @action
   loadCart() {
     if (cartList.isEmpty) {
+      isLoading = true;
       getItensCart();
     }
   }
 
   @action
   getItensCart() {
+    isLoading = true;
     _repository.getItensCart().then((value) {
-      cartList.addAll(value);
+      cartList = [...value].asObservable();
+      isLoading = false;
     });
   }
 

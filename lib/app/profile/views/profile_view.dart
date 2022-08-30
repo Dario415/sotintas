@@ -26,34 +26,21 @@ class _ProfileViewState extends State<ProfileView> {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Observer(builder: (context) {
-        return Container(
-          color: AppColors.primary06,
-          padding: const EdgeInsets.all(24.0),
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
               const SizedBox(
                 height: 30,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(Icons.arrow_back_ios_rounded),
-                  ),
-                  Text(
-                    'Perfil',
-                    style: TextStyle(
-                        fontSize: 26,
-                        color: AppColors.lightBlack,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    width: 40,
-                  ),
-                ],
+              Center(
+                child: Text(
+                  'Perfil',
+                  style: TextStyle(
+                      fontSize: 26,
+                      color: AppColors.lightBlack,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
               const SizedBox(
                 height: 30,
@@ -64,7 +51,7 @@ class _ProfileViewState extends State<ProfileView> {
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                   border: Border.all(
                     width: 1,
-                    color: Colors.grey.shade400,
+                    color: AppColors.lightGrey40,
                   ),
                   color: AppColors.backgrundWhite,
                 ),
@@ -73,12 +60,15 @@ class _ProfileViewState extends State<ProfileView> {
                   children: [
                     CircleAvatar(
                       radius: 40,
-                      backgroundColor: AppColors.lightPurpleWhite,
-                      backgroundImage:
-                          NetworkImage(_controller.profile.avatar, scale: 1),
+                      backgroundColor: AppColors.backgrundWhite,
+                      backgroundImage: _controller.profile != null
+                          ? NetworkImage(_controller.profile!.avatar)
+                          : null,
                     ),
                     Text(
-                      _controller.profile.name,
+                      _controller.profile != null
+                          ? _controller.profile!.name
+                          : '',
                       style: TextStyle(
                         fontSize: 16,
                         color: AppColors.lightBlack,
@@ -106,7 +96,7 @@ class _ProfileViewState extends State<ProfileView> {
                     borderRadius: const BorderRadius.all(Radius.circular(10)),
                     border: Border.all(
                       width: 1,
-                      color: Colors.grey.shade400,
+                      color: AppColors.lightGrey40,
                     ),
                     color: AppColors.backgrundWhite,
                   ),

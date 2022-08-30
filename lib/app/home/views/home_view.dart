@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:sotintas/app/cart/controller/cart_controller.dart';
 import 'package:sotintas/app/cart/views/cart_view.dart';
 import 'package:sotintas/app/core/utils/themes/app_colors.dart';
 import 'package:sotintas/app/home/controller/home_controller.dart';
@@ -16,6 +19,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final _controller = GetIt.I.get<HomeController>();
+  final _cartController = GetIt.I.get<CartController>();
   late PageController pageController = PageController();
 
   @override
@@ -26,38 +30,52 @@ class _HomeViewState extends State<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(
-      builder: (context) {
-        return Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _controller.currentPage,
-            selectedItemColor: AppColors.primary,
-            items: const [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.storefront_outlined), label: 'Loja'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.shopping_cart_outlined), label: 'Carrinho'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline), label: 'Perfil'),
-            ],
-            onTap: (index) {
-              pageController.animateToPage(index,
-                  duration: const Duration(seconds: 1), curve: Curves.ease);
-            },
-          ),
-          body: PageView(
-            onPageChanged: (index) {
-              _controller.currentPage = index;
-            },
-            controller: pageController,
-            children: const [
-              ShopView(),
-              CartView(),
-              ProfileView(),
-            ],
-          ),
-        );
-      }
-    );
+    return Observer(builder: (context) {
+      return Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 5,
+          currentIndex: _controller.currentPage,
+          selectedItemColor: AppColors.primary,
+          iconSize: 25,
+          selectedFontSize: 14,
+          unselectedFontSize: 14,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.storefront_outlined,
+                ),
+                label: 'Loja'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.shopping_cart_outlined,
+                ),
+                label: 'Carrinho'),
+            BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person_outline,
+                ),
+                label: 'Perfil'),
+          ],
+          onTap: (index) {
+            pageController.animateToPage(index,
+                duration: const Duration(seconds: 1), curve: Curves.ease);
+          },
+        ),
+        body: PageView(
+          onPageChanged: (index) {
+            _controller.currentPage = index;
+            if (_controller.currentPage == 2) {
+              _cartController.getItensCart();
+            }
+          },
+          controller: pageController,
+          children: const [
+            ShopView(),
+            CartView(),
+            ProfileView(),
+          ],
+        ),
+      );
+    });
   }
 }

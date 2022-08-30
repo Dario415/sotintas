@@ -41,6 +41,22 @@ mixin _$ShopController on _ShopControllerBase, Store {
     });
   }
 
+  late final _$resultsAtom =
+      Atom(name: '_ShopControllerBase.results', context: context);
+
+  @override
+  int get results {
+    _$resultsAtom.reportRead();
+    return super.results;
+  }
+
+  @override
+  set results(int value) {
+    _$resultsAtom.reportWrite(value, super.results, () {
+      super.results = value;
+    });
+  }
+
   late final _$paintListAtom =
       Atom(name: '_ShopControllerBase.paintList', context: context);
 
@@ -131,6 +147,7 @@ mixin _$ShopController on _ShopControllerBase, Store {
     return '''
 isLoading: ${isLoading},
 onlyDeliveryFree: ${onlyDeliveryFree},
+results: ${results},
 paintList: ${paintList}
     ''';
   }

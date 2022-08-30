@@ -6,7 +6,6 @@ import 'package:get_it/get_it.dart';
 import 'package:sotintas/app/core/utils/routes/app_routes.dart';
 import 'package:sotintas/app/core/utils/themes/app_colors.dart';
 import 'package:sotintas/app/core/utils/themes/app_font_style.dart';
-import 'package:sotintas/app/core/utils/widgets/custom_backgrund.dart';
 import 'package:sotintas/app/core/utils/widgets/custom_button.dart';
 import 'package:sotintas/app/details/controller/details_controller.dart';
 import 'package:sotintas/app/details/models/differentials_model.dart';
@@ -64,12 +63,13 @@ class _DetailsViewState extends State<DetailsView> {
     _controller.getImages(paint['id']!);
     _controller.getDifferentials(paint['id']!);
     return Scaffold(
-        backgroundColor: AppColors.lightPurpleWhite,
+        backgroundColor: AppColors.white,
         body: LayoutBuilder(builder: (context, constraints) {
-          return Stack(
-            children: [
-              CustomBackgrund(constraints: constraints),
-              Observer(builder: (context) {
+          return SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Container(
+              color: AppColors.primary06,
+              child: Observer(builder: (context) {
                 return Column(
                   children: [
                     const SizedBox(
@@ -116,10 +116,11 @@ class _DetailsViewState extends State<DetailsView> {
                             physics: const BouncingScrollPhysics(),
                             itemCount: _controller.imagesList.length,
                             itemBuilder: (context, index) {
-                              ImagesModel image = _controller.imagesList[index];
+                              ImagesModel image =
+                                  _controller.imagesList[index];
                               return Container(
-                                margin:
-                                    const EdgeInsets.symmetric(horizontal: 8),
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 8),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(11)),
@@ -150,7 +151,8 @@ class _DetailsViewState extends State<DetailsView> {
                                 color: AppColors.black20,
                               ),
                               onPressed: () {
-                                if ((_pageController.page!.round() + 1) > 1) {
+                                if ((_pageController.page!.round() + 1) >
+                                    1) {
                                   _pageController.animateToPage(
                                       _pageController.page!.round() - 1,
                                       duration:
@@ -196,7 +198,8 @@ class _DetailsViewState extends State<DetailsView> {
                             title: 'Como pintar',
                             isLeftRadius: true,
                             onTap: () {
-                              Navigator.pushNamed(context, AppRoutes.painting);
+                              Navigator.pushNamed(
+                                  context, AppRoutes.painting);
                             },
                           ),
                           buildButtons(
@@ -287,7 +290,7 @@ class _DetailsViewState extends State<DetailsView> {
                   ],
                 );
               }),
-            ],
+            ),
           );
         }));
   }

@@ -27,11 +27,11 @@ class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.lightPurpleWhite,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
         titleTextStyle: AppFontStyle.appbarTitle,
         elevation: 0,
-        backgroundColor: AppColors.lightPurpleWhite,
+        backgroundColor: AppColors.white,
         centerTitle: true,
         title: const Text(
           'Carrinho',
@@ -39,7 +39,7 @@ class _CartViewState extends State<CartView> {
       ),
       body: Observer(builder: (context) {
         return Padding(
-          padding: const EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(16.0),
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
@@ -54,9 +54,8 @@ class _CartViewState extends State<CartView> {
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
                       border: Border.all(
                         width: 1,
-                        color: Colors.grey.shade400,
+                        color: AppColors.lightGrey40,
                       ),
-                      color: AppColors.backgrundWhite,
                     ),
                     child: ListTile(
                       leading: ClipRRect(
@@ -64,6 +63,7 @@ class _CartViewState extends State<CartView> {
                             const BorderRadius.all(Radius.circular(7)),
                         child: Image.network(
                           item.paint.coverImage,
+                          width: 70,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -105,6 +105,21 @@ class _CartViewState extends State<CartView> {
                   );
                 },
                 itemCount: _controller.cartList.length,
+              ),
+              Positioned(
+                top: 20,
+                child: Observer(builder: (context) {
+                  return _controller.isLoading
+                      ? SizedBox(
+                          height: 25,
+                          width: 25,
+                          child: CircularProgressIndicator(
+                            backgroundColor: AppColors.brightGray,
+                            color: AppColors.primary,
+                          ),
+                        )
+                      : Container();
+                }),
               ),
               CustomButton(
                 height: 60,

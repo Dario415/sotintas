@@ -25,5 +25,6 @@ abstract class _LoginControllerBase with Store {
     final token = await _repository
         .authentication({'email': 'dario@loomi.com.br', 'password': '123456'});
     _saveToken(token['access-token']!);
+    isLoading = false;
   }
 }

@@ -86,7 +86,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     ),
                   ),
                   const SizedBox(
-                    height: 23,
+                    height: 24,
                   ),
                   CustomTextFiel(
                     controller: _nameController,
@@ -95,7 +95,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     label: 'Nome',
                   ),
                   const SizedBox(
-                    height: 24,
+                    height: 17,
                   ),
                   CustomTextFiel(
                     controller: _emailController,
@@ -104,7 +104,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     label: 'E-mail',
                   ),
                   const SizedBox(
-                    height: 24,
+                    height: 17,
                   ),
                   CustomTextFiel(
                     controller: _passwordController,
@@ -113,7 +113,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                     label: 'Senha',
                   ),
                   const SizedBox(
-                    height: 24,
+                    height: 17,
                   ),
                   CustomTextFiel(
                     controller: _confirmPasswordController,
@@ -134,12 +134,12 @@ class _RegistrationViewState extends State<RegistrationView> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // _controller.sendUser(
-                          //   name: _nameController.text,
-                          //   email: _emailController.text,
-                          //   password: _passwordController.text,
-                          //   confirmPassword: _confirmPasswordController.text,
-                          // );
+                          _controller.sendUser(
+                            name: _nameController.text,
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                            confirmPassword: _confirmPasswordController.text,
+                          );
                           Navigator.pushNamedAndRemoveUntil(
                               context, AppRoutes.login, (route) => false);
                         }

@@ -13,13 +13,13 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
       Atom(name: '_ProfileControllerBase.profile', context: context);
 
   @override
-  ProfileModel get profile {
+  ProfileModel? get profile {
     _$profileAtom.reportRead();
     return super.profile;
   }
 
   @override
-  set profile(ProfileModel value) {
+  set profile(ProfileModel? value) {
     _$profileAtom.reportWrite(value, super.profile, () {
       super.profile = value;
     });
