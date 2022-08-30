@@ -27,7 +27,8 @@ abstract class _CartControllerBase with Store {
   }
 
   @action
-  setQuantity({required String id, required Map<String, dynamic> body}) {
+  setQuantity({required String id, required int quantity}) {
+    Map<String, dynamic> body = {'quantity': quantity};
     _repository.setQuantity(id, body);
   }
 

@@ -25,6 +25,14 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  late final _$getProfileAsyncAction =
+      AsyncAction('_ProfileControllerBase.getProfile', context: context);
+
+  @override
+  Future getProfile() {
+    return _$getProfileAsyncAction.run(() => super.getProfile());
+  }
+
   late final _$_ProfileControllerBaseActionController =
       ActionController(name: '_ProfileControllerBase', context: context);
 
@@ -34,17 +42,6 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
         name: '_ProfileControllerBase.logout');
     try {
       return super.logout();
-    } finally {
-      _$_ProfileControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic getProfile() {
-    final _$actionInfo = _$_ProfileControllerBaseActionController.startAction(
-        name: '_ProfileControllerBase.getProfile');
-    try {
-      return super.getProfile();
     } finally {
       _$_ProfileControllerBaseActionController.endAction(_$actionInfo);
     }

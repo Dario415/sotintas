@@ -51,12 +51,11 @@ mixin _$CartController on _CartControllerBase, Store {
   }
 
   @override
-  dynamic setQuantity(
-      {required String id, required Map<String, dynamic> body}) {
+  dynamic setQuantity({required String id, required int quantity}) {
     final _$actionInfo = _$_CartControllerBaseActionController.startAction(
         name: '_CartControllerBase.setQuantity');
     try {
-      return super.setQuantity(id: id, body: body);
+      return super.setQuantity(id: id, quantity: quantity);
     } finally {
       _$_CartControllerBaseActionController.endAction(_$actionInfo);
     }

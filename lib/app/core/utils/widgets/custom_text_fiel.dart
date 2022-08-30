@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sotintas/app/core/utils/themes/app_colors.dart';
-import 'package:sotintas/app/core/utils/themes/app_fonts.dart';
+import 'package:sotintas/app/core/utils/themes/app_font_style.dart';
 
 class CustomTextFiel extends StatefulWidget {
   final String? label;
@@ -50,7 +50,7 @@ class _CustomTextFielState extends State<CustomTextFiel> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(widget.label!, style: AppFonts.textFildLabel),
+                    Text(widget.label!, style: AppFontStyle.textFildLabel),
                   ],
                 ),
               )
@@ -58,28 +58,30 @@ class _CustomTextFielState extends State<CustomTextFiel> {
         TextFormField(
           controller: widget.controller,
           obscureText: obscurePass,
+          cursorColor: AppColors.primary30,
+          style: AppFontStyle.textFild,
           decoration: InputDecoration(
               border: const OutlineInputBorder(
                 borderSide: BorderSide.none,
               ),
               filled: true,
-              fillColor: AppColors.purpleWhite,
+              fillColor: AppColors.white40,
               hintText: widget.hint,
-              hintStyle: AppFonts.textFildHint,
+              hintStyle: AppFontStyle.textFild,
               suffixIcon: widget.isPassword
                   ? obscurePass
                       ? InkWell(
                           onTap: () => visibleOrHidden(),
-                          child: const Icon(
+                          child: Icon(
                             Icons.visibility_off,
-                            color: AppColors.lightPurpleWhite,
+                            color: AppColors.white80,
                           ),
                         )
                       : InkWell(
                           onTap: () => visibleOrHidden(),
-                          child: const Icon(
+                          child: Icon(
                             Icons.visibility,
-                            color: AppColors.lightPurpleWhite,
+                            color: AppColors.white80,
                           ),
                         )
                   : null),

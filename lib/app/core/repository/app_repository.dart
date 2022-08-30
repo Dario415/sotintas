@@ -17,7 +17,10 @@ abstract class AppRepository {
   Future<List<ShopModel>> getAll();
 
   @GET('/login')
-  Future<String> authentication(@Body() Map<String, dynamic> body);
+  Future<Map<String, String>> authentication(@Body() Map<String, dynamic> body);
+
+  @GET('/paint/{id}')
+  Future<ShopModel> getById(@Path('id') String id);
 
   @GET('/paint?page={id}&limit=10')
   Future<List<ShopModel>> getPage(@Path('id') String id);
@@ -49,4 +52,7 @@ abstract class AppRepository {
 
   @POST("/user")
   Future<void> sendNewUser(@Body() RegistrationModel body);
+
+  @POST("/cart")
+  Future<void> addToCart(@Body() Map<String, dynamic> body);
 }

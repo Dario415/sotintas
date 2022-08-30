@@ -25,15 +25,23 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  late final _$authenticationAsyncAction =
+      AsyncAction('_LoginControllerBase.authentication', context: context);
+
+  @override
+  Future authentication() {
+    return _$authenticationAsyncAction.run(() => super.authentication());
+  }
+
   late final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase', context: context);
 
   @override
-  dynamic authentication() {
+  dynamic _saveToken(String token) {
     final _$actionInfo = _$_LoginControllerBaseActionController.startAction(
-        name: '_LoginControllerBase.authentication');
+        name: '_LoginControllerBase._saveToken');
     try {
-      return super.authentication();
+      return super._saveToken(token);
     } finally {
       _$_LoginControllerBaseActionController.endAction(_$actionInfo);
     }

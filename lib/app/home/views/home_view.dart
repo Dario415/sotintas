@@ -34,7 +34,7 @@ class _HomeViewState extends State<HomeView> {
             selectedItemColor: AppColors.primary,
             items: const [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.store_outlined), label: 'Loja'),
+                  icon: Icon(Icons.storefront_outlined), label: 'Loja'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.shopping_cart_outlined), label: 'Carrinho'),
               BottomNavigationBarItem(

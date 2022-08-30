@@ -67,6 +67,17 @@ mixin _$DetailsController on _DetailsControllerBase, Store {
   }
 
   @override
+  dynamic addToCart({required String id}) {
+    final _$actionInfo = _$_DetailsControllerBaseActionController.startAction(
+        name: '_DetailsControllerBase.addToCart');
+    try {
+      return super.addToCart(id: id);
+    } finally {
+      _$_DetailsControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 imagesList: ${imagesList},
