@@ -43,68 +43,72 @@ class _CartViewState extends State<CartView> {
           child: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              ListView.builder(
-                itemBuilder: (context, index) {
-                  final CartModel item = _controller.cartList[index];
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                      vertical: 4,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      border: Border.all(
-                        width: 1,
-                        color: AppColors.lightGrey40,
+              Padding(
+                padding: const EdgeInsets.only(bottom: 60),
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, index) {
+                    final CartModel item = _controller.cartList[index];
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 4,
                       ),
-                    ),
-                    child: ListTile(
-                      leading: ClipRRect(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(7)),
-                        child: Image.network(
-                          item.paint.coverImage,
-                          width: 70,
-                          fit: BoxFit.contain,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                        border: Border.all(
+                          width: 1,
+                          color: AppColors.lightGrey40,
                         ),
                       ),
-                      title: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(top: 12),
-                            child: Text(item.paint.name,
-                                style: AppFontStyle.cardTitle),
+                      child: ListTile(
+                        leading: ClipRRect(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(7)),
+                          child: Image.network(
+                            item.paint.coverImage,
+                            width: 70,
+                            fit: BoxFit.contain,
                           ),
-                          Divider(
-                            height: 12,
-                            color: AppColors.lightGrey,
-                          ),
-                        ],
-                      ),
-                      subtitle: Container(
-                        margin: const EdgeInsets.only(top: 0, bottom: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                        title: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CartDropdownButton(
-                              dropdownValue: item.quantity,
-                              id: item.id,
+                            Container(
+                              margin: const EdgeInsets.only(top: 12),
+                              child: Text(item.paint.name,
+                                  style: AppFontStyle.cardTitle),
                             ),
-                            Text(
-                              'R\$ ${item.paint.price}',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: AppColors.lightBlack,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            Divider(
+                              height: 12,
+                              color: AppColors.lightGrey,
                             ),
                           ],
                         ),
+                        subtitle: Container(
+                          margin: const EdgeInsets.only(top: 0, bottom: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              CartDropdownButton(
+                                dropdownValue: item.quantity,
+                                id: item.id,
+                              ),
+                              Text(
+                                'R\$ ${item.paint.price}',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: AppColors.lightBlack,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
-                  );
-                },
-                itemCount: _controller.cartList.length,
+                    );
+                  },
+                  itemCount: _controller.cartList.length,
+                ),
               ),
               Positioned(
                 top: 20,

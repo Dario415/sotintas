@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sotintas/app/core/utils/themes/app_colors.dart';
-import 'package:sotintas/app/core/utils/themes/app_font_style.dart';
 
 class PaintingView extends StatelessWidget {
   const PaintingView({Key? key}) : super(key: key);

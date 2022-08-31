@@ -27,6 +27,10 @@ class _DetailsViewState extends State<DetailsView> {
     viewportFraction: 0.85,
   );
 
+  final snackBar = const SnackBar(
+    content: Text('Item adicionado ao carrinho'),
+  );
+
   Widget buildButtons(
       {required String title, required bool isLeftRadius, Function()? onTap}) {
     return InkWell(
@@ -116,11 +120,10 @@ class _DetailsViewState extends State<DetailsView> {
                             physics: const BouncingScrollPhysics(),
                             itemCount: _controller.imagesList.length,
                             itemBuilder: (context, index) {
-                              ImagesModel image =
-                                  _controller.imagesList[index];
+                              ImagesModel image = _controller.imagesList[index];
                               return Container(
-                                margin: const EdgeInsets.symmetric(
-                                    horizontal: 8),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 8),
                                 decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(11)),
@@ -151,8 +154,7 @@ class _DetailsViewState extends State<DetailsView> {
                                 color: AppColors.black20,
                               ),
                               onPressed: () {
-                                if ((_pageController.page!.round() + 1) >
-                                    1) {
+                                if ((_pageController.page!.round() + 1) > 1) {
                                   _pageController.animateToPage(
                                       _pageController.page!.round() - 1,
                                       duration:
@@ -198,8 +200,7 @@ class _DetailsViewState extends State<DetailsView> {
                             title: 'Como pintar',
                             isLeftRadius: true,
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context, AppRoutes.painting);
+                              Navigator.pushNamed(context, AppRoutes.painting);
                             },
                           ),
                           buildButtons(
@@ -284,6 +285,7 @@ class _DetailsViewState extends State<DetailsView> {
                         ),
                         onPressed: () {
                           _controller.addToCart(id: paint['id']!);
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         },
                       ),
                     ),

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
@@ -64,7 +62,7 @@ class _HomeViewState extends State<HomeView> {
         body: PageView(
           onPageChanged: (index) {
             _controller.currentPage = index;
-            if (_controller.currentPage == 2) {
+            if (_controller.currentPage == 1) {
               _cartController.getItensCart();
             }
           },

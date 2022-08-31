@@ -3,6 +3,7 @@ import 'package:mobx/mobx.dart';
 import 'package:sotintas/app/core/data/local_data.dart';
 part 'splash_controller.g.dart';
 
+// ignore: library_private_types_in_public_api
 class SplashController = _SplashControllerBase with _$SplashController;
 
 abstract class _SplashControllerBase with Store {
